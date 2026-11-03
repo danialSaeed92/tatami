@@ -2,6 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { asyncWithLDProvider } from 'launchdarkly-react-client-sdk';
+import Observability from '@launchdarkly/observability';
+import SessionReplay from '@launchdarkly/session-replay';
 import App from './App.jsx';
 import './styles.css';
 
@@ -26,6 +28,15 @@ async function start() {
         reactOptions: { useCamelCaseFlagKeys: false },
         // Don't block first paint for more than 3s if LaunchDarkly is slow.
         timeout: 3,
+        // LaunchDarkly Observability (errors, logs, traces) + Session Replay.
+        // They reuse this client's client-side ID - no extra key needed.
+        // privacySetting 'strict' masks all text and inputs in recordings.
+        options: {
+          plugins: [
+            new Observability(),
+            new SessionReplay({ privacySetting: 'strict' }),
+          ],
+        },
       });
     } catch (err) {
       console.error('LaunchDarkly failed to initialize - continuing with flag defaults', err);
