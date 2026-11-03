@@ -1,0 +1,23 @@
+{
+  "name": "tatami-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.2.1",
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "@launchdarkly/observability": "^1.4.0",
+    "@launchdarkly/session-replay": "^1.2.5",
+    "launchdarkly-react-client-sdk": "^3.9.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  }
+}
