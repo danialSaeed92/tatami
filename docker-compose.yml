@@ -1,0 +1,17 @@
+# docker compose up --build   ->  http://localhost:4000
+services:
+  tatami:
+    build:
+      context: .
+      args:
+        VITE_LD_CLIENT_SIDE_ID: ${VITE_LD_CLIENT_SIDE_ID:-}
+        VITE_DEMO_MODE: ${VITE_DEMO_MODE:-true}
+    env_file: .env
+    environment:
+      DB_FILE: /data/tatami.db
+    ports:
+      - "4000:4000"
+    volumes:
+      - tatami-data:/data
+volumes:
+  tatami-data:

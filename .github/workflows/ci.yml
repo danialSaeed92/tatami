@@ -1,0 +1,28 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Boot smoke test (offline LaunchDarkly mode)
+        run: |
+          DB_FILE=/tmp/ci.db PORT=4000 node server/src/index.js &
+          for i in $(seq 1 20); do curl -fs localhost:4000/api/health && break; sleep 1; done
+          curl -fs localhost:4000/api/invites/WELCOME-DOJO | grep -q '"valid":true'
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t tatami .
