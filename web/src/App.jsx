@@ -6,6 +6,8 @@ import { initials } from './lib/format.js';
 import { markIdentify } from './lib/identify.js';
 import { ToastProvider } from './components/Toasts.jsx';
 import FlagChangeListener from './components/FlagChangeListener.jsx';
+import DemoPanel from './components/DemoPanel.jsx';
+import ChatWidget from './components/ChatWidget.jsx';
 import BeltBadge from './components/BeltBadge.jsx';
 import Login from './pages/Login.jsx';
 import Join from './pages/Join.jsx';
@@ -59,6 +61,7 @@ export default function App({ ldConfigured }) {
             <Route path="*" element={<Login />} />
           </Routes>
         )}
+        {DEMO_MODE && <DemoPanel />}
       </ToastProvider>
     </AuthContext.Provider>
   );
@@ -104,6 +107,7 @@ function SignedIn() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
+      <ChatWidget />
     </div>
   );
 }
