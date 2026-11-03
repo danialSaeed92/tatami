@@ -12,7 +12,7 @@ import { config } from './config.js';
 
 // ---------------------------------------------------------------------------
 // Flag keys. >>> RECREATE THESE in your LaunchDarkly project (see docs/launchdarkly-setup.md).
-// The same keys are used by the web app in web/src/flags.js.
+// The same keys are used by the web app in web/src/lib/flags.js.
 // ---------------------------------------------------------------------------
 export const FLAGS = {
   // Part 1 - Release & Remediate. Boolean. Wall comments + emoji reactions.

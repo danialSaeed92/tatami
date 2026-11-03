@@ -19,7 +19,8 @@ import { config } from './config.js';
 import { AI_CONFIG_KEY, buildContext, getAiClient } from './launchdarkly.js';
 
 // Used when LaunchDarkly is unreachable or the AI Config doesn't exist yet.
-// >>> The real prompts live in LaunchDarkly - see docs/launchdarkly-setup.md.
+// >>> RECREATE the AI Config `sensei-assistant` (variations, prompts, models) in
+//     LaunchDarkly > AI Configs - the real prompts live there. See docs/launchdarkly-setup.md.
 export const DEFAULT_AI_CONFIG = {
   enabled: true,
   provider: { name: 'anthropic' },
